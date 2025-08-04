@@ -1,0 +1,21 @@
+on:
+  release:
+    types: [created]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '14'
+    - name: Install PXT
+      run: |
+        npm install -g pxt
+        pxt target microbit
+    - name: Build
+      run: pxt build
+    - name: Test
+      run: pxt test
