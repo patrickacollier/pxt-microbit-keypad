@@ -2,6 +2,153 @@
 
 This extension provides support for matrix keypads (3x4 and 4x4) on the micro:bit, converted from the popular Arduino Keypad library.
 
+## Development Setup
+
+### Prerequisites
+
+Before you can build and develop this extension, you'll need to set up your development environment:
+
+1. **Node.js**: Install Node.js (version 16 or later recommended)
+   - Download from [nodejs.org](https://nodejs.org/)
+   - Verify installation: `node --version` and `npm --version`
+
+2. **PXT Command Line Tools**: Install the MakeCode command line interface globally
+   ```bash
+   npm install -g pxt
+   ```
+   
+   *Note: This installs the `pxt` command globally so you can run `pxt build`, `pxt serve`, etc. from any directory. The local `npm install` in the repo only installs project dependencies, not CLI tools.*
+
+3. **micro:bit Target**: Install the micro:bit target for PXT globally
+   ```bash
+   npm install -g pxt-microbit
+   ```
+   
+   *This provides the micro:bit-specific toolchain and compilation targets that PXT needs.*
+
+#### Alternative: Using npx (No Global Installation)
+If you prefer not to install global packages, you can use npx instead:
+```bash
+# Instead of global installation, use npx for commands:
+npx pxt build
+npx pxt serve
+npx pxt test
+```
+*Note: This approach downloads the tools each time, so it's slower but avoids global installations.*
+
+### Building the Extension
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/patrickacollier/pxt-microbit-keypad.git
+   cd pxt-microbit-keypad
+   ```
+
+2. **Set PXT target:**
+   ```bash
+   pxt target microbit
+   ```
+   
+   *This installs the micro:bit target locally and configures the project.*
+
+3. **Install PXT dependencies:**
+   ```bash
+   pxt install
+   ```
+
+4. **Build the extension:**
+   ```bash
+   pxt build
+   ```
+
+### Testing
+
+1. **Run tests:**
+   ```bash
+   pxt test
+   ```
+
+2. **Local development server:**
+   Start a local development server to work on your extension:
+   ```bash
+   pxt serve
+   ```
+   This opens a local development environment where you can edit and test your TypeScript code.
+   
+   *Note: To see your extension blocks in the toolbox, you'll need to import the extension into a project (see "Using the Extension" section below).*
+
+### Using the Extension in MakeCode
+
+#### Method 1: From GitHub (Recommended)
+1. Open [MakeCode for micro:bit](https://makecode.microbit.org/)
+2. Click on "Extensions" in the toolbox
+3. Enter the repository URL: `https://github.com/patrickacollier/pxt-microbit-keypad`
+4. Click "Import"
+
+#### Method 2: From Hex File (Local Development)
+1. Build your extension: `pxt build`
+2. Open [MakeCode for micro:bit](https://makecode.microbit.org/)
+3. Click on "Import" button
+4. Select the generated `.hex` file from your `built/` directory
+5. Your extension blocks will appear in the toolbox
+
+*This is the most reliable way to test your extension blocks during development.*
+
+### Project Structure
+
+```
+pxt-microbit-keypad/
+├── main.ts          # Main extension code with TypeScript blocks
+├── test.ts          # Test cases
+├── pxt.json         # PXT project configuration
+├── package.json     # Node.js dependencies
+├── tsconfig.json    # TypeScript configuration
+├── README.md        # This file
+├── LICENSE          # MIT License
+└── sim/             # Simulator assets
+    └── keypad.svg   # Keypad visualization for simulator
+```
+
+### Contributing
+
+1. **Fork** the repository
+2. **Create** a feature branch: `git checkout -b feature-name`
+3. **Make** your changes and test them locally
+4. **Run** tests: `pxt test`
+5. **Build** the project: `pxt build`
+6. **Commit** your changes: `git commit -m "Description of changes"`
+7. **Push** to your fork: `git push origin feature-name`
+8. **Create** a Pull Request
+
+### Debugging
+
+- Use `console.log()` statements in your TypeScript code for debugging
+- Check the browser console when testing in MakeCode
+- Use the micro:bit simulator to test functionality without hardware
+
+### Publishing Updates
+
+For maintainers: To publish a new version:
+
+1. Update the version in `pxt.json`
+2. Create a git tag: `git tag v1.0.1`
+3. Push the tag: `git push origin v1.0.1`
+4. GitHub releases will automatically make the new version available
+
+### Troubleshooting
+
+**Common Issues:**
+- **"pxt command not found"**: Make sure you installed pxt globally with `npm install -g pxt`
+- **Build errors**: Try `npm install` to ensure all dependencies are installed
+- **Extension not appearing**: Check that your `pxt.json` is properly formatted
+- **Simulator issues**: Clear browser cache or try an incognito window
+- **"ENOENT: no such file or directory, scandir 'libs'"**: This means your local pxt-microbit installation is incomplete. Remove the local version and use the global one:
+  ```bash
+  rm -rf node_modules/pxt-microbit
+  npm uninstall pxt-microbit
+  ```
+  Then make sure you have the global version installed: `npm install -g pxt-microbit`
+
 ## Features
 
 - Support for 3x4 and 4x4 matrix keypads
