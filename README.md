@@ -81,7 +81,7 @@ npx pxt test
 
 #### Method 1: From GitHub (Recommended)
 1. Open [MakeCode for micro:bit](https://makecode.microbit.org/)
-2. Click on "Extensions" in the toolbox
+2. Click on "Extensions" in the toolbox, you'll need to import the extension into a project to see the keypad blocks
 3. Enter the repository URL: `https://github.com/patrickacollier/pxt-microbit-keypad`
 4. Click "Import"
 
@@ -93,6 +93,15 @@ npx pxt test
 5. Your extension blocks will appear in the toolbox
 
 *This is the most reliable way to test your extension blocks during development.*
+
+#### Simulator Support
+The extension includes a simulator that provides:
+- Visual keypad representation in the MakeCode simulator
+- Interactive key pressing simulation
+- Real-time feedback of key states
+- Support for both 3x4 and 4x4 keypad layouts
+
+When you use the keypad blocks in your program, the simulator will automatically display a visual keypad that you can interact with by clicking the keys.
 
 ### Project Structure
 
@@ -106,6 +115,7 @@ pxt-microbit-keypad/
 ├── README.md        # This file
 ├── LICENSE          # MIT License
 └── sim/             # Simulator assets
+    ├── keypad_sim.ts # Simulator logic for MakeCode
     └── keypad.svg   # Keypad visualization for simulator
 ```
 

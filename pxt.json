@@ -12,6 +12,9 @@
     "testFiles": [
         "test.ts"
     ],
+    "simFiles": [
+        "sim/keypad_sim.ts"
+    ],
     "targetVersions": {
         "target": "4.0.11",
         "targetId": "microbit"
